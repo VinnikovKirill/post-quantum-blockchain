@@ -1,34 +1,8 @@
 import sys
 
-class AbstractCommand:
-    def execute(self):
-        pass
+from Commands import getCommand
 
-class BenchmarkCommand(AbstractCommand):
-    def execute(self):
-        print('--benchmark')
-
-class HelpCommand(AbstractCommand):
-    def execute(self):
-        print('--help')
-
-command = None
-
-if len(sys.argv) <= 1:
-    command = HelpCommand()
+if __name__ == '__main__':
+    command_name = sys.argv[1] if len(sys.argv) > 1 else '--help'
+    command = getCommand(command_name)
     command.execute()
-    sys.exit(0)
-
-command = None
-
-match sys.argv[1]:
-    case '--help':
-        command = HelpCommand()
-    case '--benchmark':
-        command = BenchmarkCommand()
-    case _:
-        command = HelpCommand()
-
-command.execute()
-
-sys.exit(0)
