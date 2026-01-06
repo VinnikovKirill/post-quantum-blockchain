@@ -1,0 +1,5 @@
+config = {
+    'signature': {
+        'vendor': 'sqisign',
+    },
+}
